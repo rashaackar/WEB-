@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Photo Slideshow</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .image-container.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="image1" class="image-container active">
+        <img src="img/newspaper1.jpg" alt="Newspaper 1">
+    </div>
+    <div id="image2" class="image-container">
+        <img src="img/newspaper2.jpg" alt="Newspaper 2">
+    </div>
+    <div id="image3" class="image-container">
+        <img src="img/newspaper3.jpg" alt="Newspaper 3">
+    </div>
+    <div id="image4" class="image-container">
+        <img src="img/newspaper4.jpg" alt="Newspaper 4">
+    </div>
+    <div id="image5" class="image-container">
+        <img src="img/newspaper6.jpg" alt="Newspaper 6">
+    </div>
+    <div id="image6" class="image-container">
+        <img src="img/newspaper7.jpg" alt="Newspaper 7">
+    </div>
+    <div id="image7" class="image-container">
+        <img src="img/newspaper8.jpg" alt="Newspaper 8">
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.image-container');
+        let currentIndex = 0;
+        const interval = 3000; // 3 seconds
+
+        function showNextImage() {
+            // Hide the current image
+            images[currentIndex].classList.remove('active');
+
+            // Move to the next image, looping back to the start if at the end
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Show the next image
+            images[currentIndex].classList.add('active');
+        }
+
+        // Start the slideshow
+        setInterval(showNextImage, interval);
+    </script>
+</body>
+</html>
